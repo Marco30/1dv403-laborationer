@@ -2,7 +2,10 @@
 
 window.onload = function(){
 	
-	var secret = 50; // Detta tal behöver bytas ut mot ett slumpat tal.
+	// Detta tal behöver bytas ut mot ett slumpat tal.
+	var secret = Math.floor(Math.random() * 100 + 1); // här slumpar vi fram talet med hjälp av funktionen Math.floor() och tilldelar variabeln secret det slump mesiga talet   
+	
+	var turns = 1;
 	
 	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var guess = function(number){
@@ -10,6 +13,29 @@ window.onload = function(){
 		console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
 			
 		// Plats för förändring.
+		
+		if(number < 1 || number > 100) 
+		{
+		 console.log("Talet är utanför intervallet 0 - 100");
+		}
+		
+		 else if (number === secret) // om du variabelerna number och secret är lika stora körs den här if satsen 
+		  {      
+		    	console.log("Gratis du gissade på rätt!!!, det hämliga numret var:" + secret); 
+		  }
+		 
+		  else if (number < secret) // om du variabel number är mindre en secret så körs den här if satsen 
+		  {
+		 console.log("talet du gissade var för litet");
+		  }
+		 
+		  else if (number > secret) // om du variabel number är störe en secret så körs den här if satsen 
+		  {
+		  console.log("talet du gissade var för stort");
+		  }
+		  
+		  turns+=1;
+		  console.log("du har gissat" + turns + " gånger");
 
 
 		// Returnera exempelvis: 
