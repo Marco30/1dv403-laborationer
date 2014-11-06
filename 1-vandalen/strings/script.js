@@ -8,36 +8,41 @@ window.onload = function(){
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 	
-/*if (str==="")
-{
-	console.log("ingen text har mattas in");
-}*/
+	if (str==="")// if stasen kontrollerar om str =  "" vilket betyder att det inte har någon text     
+	{
+		var m="ingen text har mattas in";
+		return m;
+	}
 
-var i=0;
+	else
+	{
 
-var test="";
-
-var text = "";
-
-while (i <= str.length)
-{
-    test = str.charAt(i);
-   
-    	if (test == test.toUpperCase()) // if stasen kontrollerar om bokstaven är en stor bokstav   
-    	{
-    		text += test.toLowerCase();
-    	 
-    	}
-    	
-    	else if (test == test.toLowerCase())// if stasen kontrollerar om bokstaven är en liten bokstav 
-    	{
-    		text += test.toUpperCase();
-    	}
-    
-    i++;
-}
-
-return text;
+		var test="";
+		
+		var text = "";
+		
+		for(var i=0; i <= str.length; i+=1)// vi löper igenom variabeln str i den här for satsen           
+		{
+		    test = str.charAt(i);
+		    
+		    	if (test == test.toUpperCase()) // if stasen kontrollerar om bokstaven är en stor bokstav   
+		    	{
+		    		text += test.toLowerCase();
+		    	 
+		    	}
+		    	
+		    	else if (test == test.toLowerCase())// if stasen kontrollerar om bokstaven är en liten bokstav 
+		    	{
+		    		text += test.toUpperCase();
+		    	}
+		  
+		}
+		
+		text = text.replace(/\a|\A/g,"#");//byter ut litet och stort A mot # med hjälp av metoden replace
+		
+		return text;
+		
+	}
 
 	};
 	// ------------------------------------------------------------------------------
