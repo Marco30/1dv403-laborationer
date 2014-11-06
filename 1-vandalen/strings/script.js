@@ -8,11 +8,36 @@ window.onload = function(){
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 	
+/*if (str==="")
+{
+	console.log("ingen text har mattas in");
+}*/
 
+var i=0;
 
+var test="";
 
+var text = "";
 
+while (i <= str.length)
+{
+    test = str.charAt(i);
+   
+    	if (test == test.toUpperCase()) // if stasen kontrollerar om bokstaven är en stor bokstav   
+    	{
+    		text += test.toLowerCase();
+    	 
+    	}
+    	
+    	else if (test == test.toLowerCase())// if stasen kontrollerar om bokstaven är en liten bokstav 
+    	{
+    		text += test.toUpperCase();
+    	}
+    
+    i++;
+}
 
+return text;
 
 	};
 	// ------------------------------------------------------------------------------
