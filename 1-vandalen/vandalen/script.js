@@ -26,11 +26,6 @@ for(var i = 0; i < persArr.length; i+=1) // i den här for satsen flyttar man ö
     temp [i]= persArr[i].name;
     age [i]= persArr[i].age;
     
-    if( i < persArr.length - 1)// if satsen läger till , och mellanslag      
-    {
-   temp[i] +=", "; 
-    }
-    
     total += age[i];
     
 }
@@ -41,21 +36,20 @@ var maxAge = Math.max.apply( Math, age);// hösgta åldern
 
 var avarageAge = Math.round( total / age.length);//medelåldern
 
-temp.sort();// sorterar arrayen i bokstav ordning       
-
-
-for(var i = 0; i < temp.length; i+=1)// 
-{
-    name += temp[i];
+temp.sort(function(a, b)// sorterar arrayen i bokstav ordning gör så det funkar med svenska tecken 
+{ 
+    return a.localeCompare(b, 'sv');
     
-}
+});      
+
+name = temp.toString(); // metoden tostring till delar arrayen värde som string till name 
+
+name = name.split(",").join(", ");// ersätter , med , och mellanslag 
+
 
 return {minAge: minAge, maxAge: maxAge, averageAge: avarageAge, names: name};
 
-
-
 };
-
 
 var data = [{name: "Mats Loock", age: 46}, {name: "Johan Leitet", age: 36}, {name: "John Häggerud", age: 37}];
 
