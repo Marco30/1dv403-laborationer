@@ -10,20 +10,26 @@ window.onload = function(){
 			// Din kod här.
 
 
-var birthday = new Date(date);
+var birthday = new Date(date); //vi skapar ett objekt av typen Date och matar in år-månad-dag
 
-var currentdate = new Date();
+var currentdate = new Date();// Date objekt som har dagen datum och tid  
  
-birthday = birthday.getTime();
+var day = 24 * 60 * 60 * 1000; // är sifran på antal mikrosekunder i en dag
+ 
+birthday.setFullYear(currentdate.getFullYear());// ersätter året som matats in med året vi befinner os i   
 
-currentdate = currentdate.getTime();
-	 
-var daysleft = birthday - currentdate;
+var d1 = birthday.getTime();//ger d1 variabeln datumet som finns data objektet i millisekunder    
 
-alert("Det är " + daysleft + " dagar tills din födelsedag");
+var d2 = currentdate.getTime();// d2 ger variabeln datumet som finns data objektet i millisekunder    
+
+var daysleft = Math.floor((d1 - d2) / (day));// här subtraherar vi två tal som presenterar två olika datum och dividerar det med antal millisekunder som finns i endag för at få tantal dagar kvar      
+
+daysleft+=1;
+alert(daysleft + " dagar tills din födelsedag");
 
 
 	};
+
 	// ------------------------------------------------------------------------------
 
 
