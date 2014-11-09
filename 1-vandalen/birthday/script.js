@@ -10,6 +10,17 @@ window.onload = function(){
 			// Din kod här.
 
 
+var birthday = new Date(date);
+
+var currentdate = new Date();
+ 
+birthday = birthday.getTime();
+
+currentdate = currentdate.getTime();
+	 
+var daysleft = birthday - currentdate;
+
+alert("Det är " + daysleft + " dagar tills din födelsedag");
 
 
 	};
