@@ -6,29 +6,51 @@ var makePerson = function(persArr){
 
 
 	// Din kod här...
-	
-	var nameage = persArr.slice();
-	
-	var name = "";
-	var age =[];
-	
-nameage.sort(function(a, b)
-{
- return a.age-b.age
-})
 
-for(var i = 0; i < nameage.length; i+=1) 
+	
+	var name = "";// variabel som kommer ha alla namn som en string    
+	
+	var age =[];//array som kommer ha allas ålder 
+	
+	var temp = [];// en array som kommer ha namnen temporär tills det flytas över till name  
+	
+	var total = 0;// variabel som kommer ha den totala summan av arryan age  
+	
+persArr.sort(function(a, b)// sorterar alla numeriska värden i objektet persArr    
 {
-    name += " " + nameage[i].name;
-    age [i]= nameage[i].age;
+ return a.age-b.age;
+});
 
+for(var i = 0; i < persArr.length; i+=1) // i den här for satsen flyttar man över namn och ålder från objektet persArr till array temp och age    
+{
+    temp [i]= persArr[i].name;
+    age [i]= persArr[i].age;
+    
+    if( i < persArr.length - 1)// if satsen läger till , och mellanslag      
+    {
+   temp[i] +=", "; 
+    }
+    
+    total += age[i];
+    
 }
-var minAge = Math.min.apply( Math, age); 
-var maxAge = Math.max.apply( Math, age);
-var avarageAge = age[(age.length - 1) / 2];
- 
+var minAge = Math.min.apply( Math, age);// minsta åldern
 
-console.log( "minAge: " + minAge + "maxAge: " + maxAge + " averageAge: " + avarageAge + " names: " + name);
+var maxAge = Math.max.apply( Math, age);// hösgta åldern
+
+
+var avarageAge = Math.round( total / age.length);//medelåldern
+
+temp.sort();// sorterar arrayen i bokstav ordning       
+
+
+for(var i = 0; i < temp.length; i+=1)// 
+{
+    name += temp[i];
+    
+}
+
+return {minAge: minAge, maxAge: maxAge, averageAge: avarageAge, names: name};
 
 
 
