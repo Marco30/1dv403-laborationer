@@ -18,28 +18,25 @@ window.onload = function(){
 		
 		if(number < 1 || number > 100) // om variablen nummer inte är en siffra mellan 1-100  går vi in här 
 		{
-		 console.log("Talet är utanför intervallet 0 - 100");
-		 return false;
+		 return [false, "Talet är utanför intervallet 0 - 100"];
 		}
 		
 		 else if (number == secret) // om du variabelerna number och secret är lika stora körs den här if satsen 
 		  {      
-		 console.log("Gratis du gissade på rätt!!!, det hämliga numret var:" + secret); 
-		 console.log("du har gissat " + turns + " gånger");
-		 return true;
+	
+		 return [true, "Gratis du gissade på rätt!!!, det hämliga numret var:" + secret +" du har gissat " + turns + " gånger"];
 	
 		  }
 		 
 		  else if (number < secret) // om du variabel number är mindre en secret så körs den här if satsen 
 		  {
-		 console.log("talet du gissade var för litet");
-		  return false;
+		  return [false, "talet du gissade var för litet"];
 		  }
 		 
 		  else if (number > secret) // om du variabel number är störe en secret så körs den här if satsen 
 		  {
-		  console.log("talet du gissade var för stort");
-		  return false;
+		
+		  return [false, "talet du gissade var för stort"];
 		  }
 		  
 
