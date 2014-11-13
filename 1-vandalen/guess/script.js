@@ -24,7 +24,7 @@ window.onload = function(){
 		 else if (number == secret) // om du variabelerna number och secret är lika stora körs den här if satsen 
 		  {      
 	
-		 return [true, "Gratis du gissade på rätt!!!, det hämliga numret var:" + secret +" du har gissat " + turns + " gånger"];
+		 return [true, "Gratis du gissade på rätt!!!, det hämliga numret var: " + secret +" du har gissat " + turns + " gånger"];
 	
 		  }
 		 

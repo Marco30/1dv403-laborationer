@@ -8,7 +8,7 @@ window.onload = function(){
 
 
 			// Din kod här.
-		if (Date.parse(date))
+		if (Date.parse(date))// om det inmatad inte är i formatet YYYY-MM-DD så körs inte if satsen och vi hopar till else satsen som kör ett fel meddelande  
 		{
 		
 			var birthday = new Date(date); //vi skapar ett objekt av typen Date och matar in år-månad-dag
@@ -47,7 +47,7 @@ window.onload = function(){
 		}
 		else 
 		{
-			return "Error!!!";
+			throw new Error("skriva i formatet YYYY-MM-DD");// visar fel meddelande 
 		}
 
 	};
