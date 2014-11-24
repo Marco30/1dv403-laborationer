@@ -43,9 +43,9 @@ var makePerson = function(persArr){
         
     });      
     
-    name = temp.toString(); // metoden tostring till delar arrayen värde som string till name 
+    name = temp.toString(); //tostring till omvandlar arrayen namn till string
     
-    name = name.split(",").join(", ");// ersätter , med , och mellanslag 
+    name = name.split(",").join(", ");// ersätter , med , och mellanslag i string
     
     
     return {minAge: minAge, maxAge: maxAge, averageAge: avarageAge, names: name};
