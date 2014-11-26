@@ -1,11 +1,51 @@
 <!DOCTYPE html>
+
 <html lang="sv">
+    
 <head>
+    
 	<meta charset="UTF-8" />
- 	<title>Messageboard</title>
+	
+ 	<title>Mezzage</title>
+ 	
+ 	<link href="css/style.css" rel="stylesheet" type="text/css">
+    
+    <script src="js/Message.js"></script>
 
 </head>
+
     <body>
-        <script src="js/Message.js"></script>
+        
+        <div id="inramning"><!--*CSS läger text rutan i mitten-->
+             
+             <header>
+                    <h2>Marco Mezzage</h2>
+             </header>
+                
+           <main>
+                
+                <div id="textonpage"><!-- Här kommer jag lad in texten  -->
+                    
+                </div>
+                
+                <div id="text">
+               
+                    <p>
+                        <label id="count">text Antal : </label>
+                    </p>
+                    
+                    <p>
+                        <textarea id="text" cols="60" rows="6"> 
+                        </textarea><!--Text ruta-->
+                    </p>
+                    
+                    <button id="button">Skicka Text</button><!--Skicka Knapp-->
+                    
+                </div>
+                
+           </main>
+            
+        </div>
+       
     </body>
 </html>

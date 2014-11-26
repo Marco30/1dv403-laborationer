@@ -1,14 +1,14 @@
 "use strict";
 
-function Message(message, date) 
+function Message(message, date) //Konstruktor som har tvo privata variabler, vi använder get och set för att koma åt dem  
 {
     
-    this.getText = function() 
+    this.getText = function()// används för att hämta en text 
     {
         return message;
     };
     
-    this.setText = function(_text) 
+    this.setText = function(_text)// används för att lägga till en text 
     {
         message = _text;
     };
@@ -29,8 +29,8 @@ Message.prototype.toString = function()
     return this.getText()+" ("+this.getDate()+")";
 };
 
- var mess = new Message("marco", new Date());
+ /*var mess = new Message("marco", new Date());
  alert(mess);
  alert(mess.getText());
  mess.setText("enn annan text");
- alert(mess);
+ alert(mess);*/
