@@ -29,6 +29,15 @@ Message.prototype.toString = function()
     return this.getText()+" ("+this.getDate()+")";
 };
 
+Message.prototype.getHTMLText = function() {
+    return this.getText().replace(/[\n\r]/g, "<br />");
+};
+
+Message.prototype.getDatetext = function() {
+    return this.getDate();
+};
+
+
  /*var mess = new Message("marco", new Date());
  alert(mess);
  alert(mess.getText());
