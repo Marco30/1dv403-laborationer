@@ -7,13 +7,42 @@
     
         start : function()
         {
+            
+            
+            
+             document.getElementById("text").onkeypress = function(e) 
+             {
+                var enter = e.keyCode;
+                
+                if (e.shiftKey && enter === 13) 
+                {
+                    document.textruta.value += "\n";
+                    return false;
+                } 
+                else if (e.keyCode === 13)
+                {
+                    
+                var text = document.getElementById("text").value;// Tilldelar variabelns text, det värdet som mattat in i hemsidans text ruta 
+                
+                document.getElementById("text").value = "för att göra radbrytningar tryck på SHIFT+ENTER ";// Åter ställer värdet på textarea i indext.html rutan till tom
+                
+                var mess = new Message(text, new Date());// skapar ett objket, Till delar den texten och tiden då den skrevs   
+                
+                MezzageBoard.messages.push(mess);// lägger in objketet i arrayern,Varje objekt representerar ett meddelande   
+                
+                MezzageBoard.laddatext();     
+                    
+                }
+             
+            };
+            
             document.getElementById("button").onclick = function gettext(e)// körs när man klickat på skicka knappen, tar i mot texten som mattas in 
             {
                  e.preventDefault();
                  
                 var text = document.getElementById("text").value;// Tilldelar variabelns text, det värdet som mattat in i hemsidans text ruta 
                 
-                document.getElementById("text").value = "Marco är kung";// Åter ställer värdet på textarea i indext.html rutan till tom
+                document.getElementById("text").value = "för att göra radbrytningar tryck på SHIFT+ENTER ";// Åter ställer värdet på textarea i indext.html rutan till tom
                 
                 var mess = new Message(text, new Date());// skapar ett objket, Till delar den texten och tiden då den skrevs   
                 
@@ -24,6 +53,8 @@
             };
             
         },
+        
+         //---------------------visar Text--------------------------------
         
           laddatext : function()// Löper igenom texterna som mattas in
           {
@@ -45,7 +76,7 @@
         textin : function(tex) //funktionen skriver in texterna och ikoner på HTML sidan så att det kan presenteras 
         {
             
-             //---------------------Text--------------------------------
+             //---------------------Text läggs in i HTML--------------------------------
              
              var text1 = document.createElement("div");//Variabeln text1 får HTML koden <div>
              
@@ -60,7 +91,7 @@
             p.className = "textinput";// <p> till delas klassa namnet newmessage <p class="textinput"
             
         
-          //---------------------Tid--------------------------------
+          //---------------------Tid läggs in i HTML--------------------------------
           
           
             var tid = document.createElement("p");// Variabeln tid får HTML koden <p>
@@ -80,7 +111,7 @@
             
             ikon.className = "ikon";// <div> till delas klassa namnet ikon <div class="ikon">
             
-             //-------------------Tid ikon--------------------------------
+             //-------------------Tid ikon läggs in i HTML--------------------------------
             
             var tidlenk = document.createElement("a");// Variabeln tidikon får HTML koden <a>
             
@@ -102,7 +133,7 @@
           
            text1.appendChild(ikon);// <div > får <a> med tid
            
-           //-------------------Delet ikon--------------------------------
+           //-------------------Delet ikon läggs in i HTML--------------------------------
            
          
             var delet = document.createElement("a"); // Variabeln delet får HTML koden <a>
@@ -133,7 +164,7 @@
            
 
            
-            //-------------------skriver ut--------------------------------
+            //-------------------skriver in allt ny HTML i HTML filen--------------------------------
            
            document.getElementById("textonpage").appendChild(text1);// Lägger in den nya HTML koden i <div id = "textonpage"> så att det syns på sidan
         
