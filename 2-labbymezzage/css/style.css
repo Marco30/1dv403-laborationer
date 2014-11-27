@@ -94,9 +94,10 @@ padding-left: 7px;
 #textonpage
 {
  margin: auto;
-height: 247px;
 background: none repeat scroll 0% 0% #00F;
 border-top: 3px solid #000;
 border-bottom: 3px solid #000;
+min-height: 247px;
+height: auto !important;
 }
 
