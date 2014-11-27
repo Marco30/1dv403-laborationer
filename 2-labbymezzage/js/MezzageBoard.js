@@ -73,14 +73,14 @@
 
         
         
-            //-------------------ikon div--------------------------------
+            //-------------------Ikon div--------------------------------
         
-         
-            var ikon = document.createElement("div");// Variabeln Ikon1tid får HTML koden <span>
+            // här skpas en div för all ikoner
+            var ikon = document.createElement("div");// Variabeln Ikon får HTML koden <div>
             
             ikon.className = "ikon";// <div> till delas klassa namnet ikon <div class="ikon">
             
-             //-------------------tid ikon--------------------------------
+             //-------------------Tid ikon--------------------------------
             
             var tidlenk = document.createElement("a");// Variabeln tidikon får HTML koden <a>
             
@@ -102,7 +102,38 @@
           
            text1.appendChild(ikon);// <div > får <a> med tid
            
-           //-------------------skriver ut--------------------------------
+           //-------------------Delet ikon--------------------------------
+           
+         
+            var delet = document.createElement("a"); // Variabeln delet får HTML koden <a>
+            
+            var deletikon = document.createElement("img");// variabeln deletiko får HTML koden <img>
+            
+            deletikon.className = "delete";// <img> till delas klassa namnet delete <div class="delete">
+            
+            deletikon.setAttribute("src", "pics/X.png");// <img> Egenskapen som länkar till bild och själva sökvägen till bilden 
+            
+          
+           deletikon.onclick = function() // Kilkar man på delet ikonen körs den här funktionen som frågar dgi om du vill ta bort meddelandet 
+           {
+                var result = confirm("Vill du ta bort detta meddelande");//Ruta kommer fram där man kan bekräfta eller avböja 
+                
+                if (result === true)
+                {
+                    MezzageBoard.messages.splice(tex, 1);
+                    MezzageBoard.laddatext();
+                }
+            };
+            
+            ikon.appendChild(delet);//  Variabeln ikon får HTML koden <a>
+           
+           delet.appendChild(deletikon);//  Variabeln tidlenk får HTML koden <img>
+          
+           text1.appendChild(ikon);// <div > får <a> med tid
+           
+
+           
+            //-------------------skriver ut--------------------------------
            
            document.getElementById("textonpage").appendChild(text1);// Lägger in den nya HTML koden i <div id = "textonpage"> så att det syns på sidan
         

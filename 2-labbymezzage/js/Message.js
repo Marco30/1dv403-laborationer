@@ -37,7 +37,6 @@ Message.prototype.getDatetext = function() {
     return this.getDate();
 };
 
-
  /*var mess = new Message("marco", new Date());
  alert(mess);
  alert(mess.getText());
