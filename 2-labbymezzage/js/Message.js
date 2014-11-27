@@ -26,14 +26,14 @@ function Message(message, date) //Konstruktor som har tvo privata variabler, vi 
 
 Message.prototype.toString = function() 
 {
-    return this.getText()+" ("+this.getDate()+")";
+    return this.getText()+" ("+this.getDate()+")";// visar tect och datumet till sammans
 };
 
 Message.prototype.getHTMLText = function() {
-    return this.getText().replace(/[\n\r]/g, "<br />");
+    return this.getText().replace(/[\n\r]/g, "<br />");// om vandlar alla \n  tll radbrytning innan man använder texten
 };
 
-Message.prototype.getDatetext = function() {
+Message.prototype.getDatetext = function() {//Tar ut tiden som separatas
     return this.getDate();
 };
 

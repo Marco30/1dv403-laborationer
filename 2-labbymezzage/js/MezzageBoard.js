@@ -8,23 +8,22 @@
         start : function()
         {
             
+            //---------------------Tryck ner tangent event--------------------------------
             
-            
-             document.getElementById("text").onkeypress = function(e) 
+             document.getElementById("text").onkeypress = function(e) //Känner av knaptryck    
              {
-                var enter = e.keyCode;
+                var enter = e.keyCode;// enter får värdet som trycks på 
                 
-                if (e.shiftKey && enter === 13) 
+                if (e.shiftKey && enter === 13) // Här kontrolleras om man  tryckt på shift och enter 
                 {
-                    document.textruta.value += "\n";
-                    return false;
+                    document.textruta.value += "\n";//här läger man in radbrytning i texten 
                 } 
                 else if (e.keyCode === 13)
                 {
                     
                 var text = document.getElementById("text").value;// Tilldelar variabelns text, det värdet som mattat in i hemsidans text ruta 
                 
-                document.getElementById("text").value = "för att göra radbrytningar tryck på SHIFT+ENTER ";// Åter ställer värdet på textarea i indext.html rutan till tom
+                document.getElementById("text").value = "";// Åter ställer värdet på textarea i indext.html rutan till tom
                 
                 var mess = new Message(text, new Date());// skapar ett objket, Till delar den texten och tiden då den skrevs   
                 
@@ -36,13 +35,15 @@
              
             };
             
+            //---------------------Klick event--------------------------------
+            
             document.getElementById("button").onclick = function gettext(e)// körs när man klickat på skicka knappen, tar i mot texten som mattas in 
             {
                  e.preventDefault();
                  
                 var text = document.getElementById("text").value;// Tilldelar variabelns text, det värdet som mattat in i hemsidans text ruta 
                 
-                document.getElementById("text").value = "för att göra radbrytningar tryck på SHIFT+ENTER ";// Åter ställer värdet på textarea i indext.html rutan till tom
+                document.getElementById("text").value = "";// Åter ställer värdet på textarea i indext.html rutan till tom
                 
                 var mess = new Message(text, new Date());// skapar ett objket, Till delar den texten och tiden då den skrevs   
                 
@@ -66,11 +67,11 @@
                 MezzageBoard.textin(i);
             }
             
-            var antal = document.getElementById("messagecount");// räknar antal skrivna meddelanden    
+            //---------------------Antal texter räknas här--------------------------------
             
-            var number = (MezzageBoard.messages.length);
-            
-            antal.innerHTML = number;
+            var antal= (MezzageBoard.messages.length);//här får variabeln antal platser i arrayen 
+        
+            document.getElementById("antal").innerHTML = "Antal meddelanden: "+ antal;//här matas den informationen   
         },
         
         textin : function(tex) //funktionen skriver in texterna och ikoner på HTML sidan så att det kan presenteras 
@@ -121,17 +122,19 @@
             
             bildkod.setAttribute("src", "pics/tid.png");// <img> Egenskapen som länkar till bild och själva sökvägen till bilden 
             
-            bildkod.onclick = function() // visar tiden i en ruta när man klickar på tid ikonen 
-            {
-                alert("Inlägget skapades " + MezzageBoard.messages[tex].getDatetext().toLocaleDateString() +
-                " klockan " + MezzageBoard.messages[tex].getDatetext().toLocaleTimeString());
-            }
-            
            ikon.appendChild(tidlenk);//  Variabeln ikon får HTML koden <a>
            
            tidlenk.appendChild(bildkod);//  Variabeln tidlenk får HTML koden <img>
           
            text1.appendChild(ikon);// <div > får <a> med tid
+           
+           //-------------------Tid Funktion--------------------------------
+           
+            bildkod.onclick = function() // visar tiden i en ruta när man klickar på tid ikonen 
+            {
+                alert("Inlägget skapades " + MezzageBoard.messages[tex].getDatetext().toLocaleDateString() +
+                " klockan " + MezzageBoard.messages[tex].getDatetext().toLocaleTimeString());
+            }
            
            //-------------------Delet ikon läggs in i HTML--------------------------------
            
@@ -144,25 +147,25 @@
             
             deletikon.setAttribute("src", "pics/X.png");// <img> Egenskapen som länkar till bild och själva sökvägen till bilden 
             
-          
-           deletikon.onclick = function() // Kilkar man på delet ikonen körs den här funktionen som frågar dgi om du vill ta bort meddelandet 
-           {
-                var result = confirm("Vill du ta bort detta meddelande");//Ruta kommer fram där man kan bekräfta eller avböja 
-                
-                if (result === true)
-                {
-                    MezzageBoard.messages.splice(tex, 1);
-                    MezzageBoard.laddatext();
-                }
-            };
-            
             ikon.appendChild(delet);//  Variabeln ikon får HTML koden <a>
            
            delet.appendChild(deletikon);//  Variabeln tidlenk får HTML koden <img>
           
            text1.appendChild(ikon);// <div > får <a> med tid
            
-
+           //-------------------Delet Funktion --------------------------------
+           
+            deletikon.onclick = function() // Kilkar man på delet ikonen körs den här funktionen som frågar dig om du vill ta bort meddelandet 
+            {
+                var result = confirm("Vill du ta bort detta meddelande");//Ruta kommer fram där man kan bekräfta eller avböja 
+                
+                if (result === true)
+                {
+                    MezzageBoard.messages.splice(tex, 1);// Tar bort  text i array platsen som tex variabeln pekar på 
+                    
+                    MezzageBoard.laddatext();// läser inte texten igen,  för att visa förändringen 
+                }
+            };
            
             //-------------------skriver in allt ny HTML i HTML filen--------------------------------
            
@@ -172,4 +175,4 @@
     };
         
    
-window.onload = MezzageBoard.start;
+window.onload = MezzageBoard.start;// startar funktionen som har label start när sidan har ladats
