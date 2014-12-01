@@ -12,6 +12,8 @@
             
              document.getElementById("text").onkeypress = function(e) //Känner av knaptryck    
              {
+                 
+                  
                 var enter = e.keyCode;// enter får värdet som trycks på 
                 
                 if (e.shiftKey && enter === 13) // Här kontrolleras om man  tryckt på shift och enter 
@@ -21,6 +23,8 @@
                 else if (e.keyCode === 13)
                 {
                     
+                e.preventDefault();
+                     
                 var text = document.getElementById("text").value;// Tilldelar variabelns text, det värdet som mattat in i hemsidans text ruta 
                 
                 document.getElementById("text").value = "";// Åter ställer värdet på textarea i indext.html rutan till tom
@@ -132,8 +136,8 @@
            
             bildkod.onclick = function() // visar tiden i en ruta när man klickar på tid ikonen 
             {
-                alert("Inlägget skapades " + MezzageBoard.messages[tex].getDatetext().toLocaleDateString() +
-                " klockan " + MezzageBoard.messages[tex].getDatetext().toLocaleTimeString());
+                alert("Inlägget skapades " + MezzageBoard.messages[tex].getDate().toLocaleDateString() +
+                " klockan " + MezzageBoard.messages[tex].getDate().toLocaleTimeString());
             }
            
            //-------------------Delet ikon läggs in i HTML--------------------------------
