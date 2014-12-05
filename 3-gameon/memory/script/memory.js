@@ -28,11 +28,11 @@ var Memory =
         
       //------------------- Här skapas tabellen --------------------------------
      
-        for(var i = 0; i < rows; i++)// Den här forstasen kommer loppa 4 gånger och skapa 4 tabellrader 
+        for(var i = 0; i < rows; i+=1)// Den här forstasen kommer loppa 4 gånger och skapa 4 tabellrader 
         {
             var tabellrad = table.insertRow();// här får variabeln tabellrad en HTML kod som skappar en tabellrad inuti index sidan
             
-            for(var j = 0; j < cols; j++)// Den här forstasen loppa 4 gånger och skapa 4 celler Inuti table raden som skapats i forsatsen innan  
+            for(var j = 0; j < cols; j+=1)// Den här forstasen loppa 4 gånger och skapa 4 celler Inuti table raden som skapats i forsatsen innan  
             {
                 var cell = tabellrad.insertCell();// skapara en Cell i en tabbel 
                 
@@ -109,7 +109,7 @@ var Memory =
         
         if (bilder[0].getElementsByTagName("img")[0].src === bilder[1].getElementsByTagName("img")[0].src) // den här if satsen kontrollerar om bilderna är lika 
         {
-            Memory.par = [];// skapar ny par array 
+            Memory.par = [];
             
             Memory.antalpar+=1;// Räknar antal par man hittat   
             
@@ -119,9 +119,10 @@ var Memory =
             
             else 
             {
-                bilder[0].getElementsByTagName("img")[0].setAttribute("src", "memory/pics/0.png");// nollställer båda bilderna  
-                
-               bilder[1].getElementsByTagName("img")[0].setAttribute("src", "memory/pics/0.png");// nollställer båda bilderna  
+                for(var m = 0; m < 2; m+=1)// nollställer båda bilderna som finns i par arrayen  
+                {
+                bilder[m].getElementsByTagName("img")[0].setAttribute("src", "memory/pics/0.png");// nollställer båda bilderna  
+                }
                 
                 Memory.par = [];// skapar ny par array 
                 
