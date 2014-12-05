@@ -52,10 +52,9 @@ var Memory =
                 a.appendChild(bild);//  Variabeln a får HTML koden <img>
                 
                 cell.appendChild(a); // Variabeln cell får HTML koden <a> som atmoatisk lägs in i index sidan 
-                
              
                 Memory.vendbilder(bildplats, a);
-                
+
                 bildplats+=1;// Variabeln bildplats ökar met ett
             }
         }
@@ -72,11 +71,12 @@ var Memory =
     
     vendbilder: function(bildplats, a) // Här hanterar vi vändning av memory bilderna   
     {
+        
         a.onclick = function()// När man klickar på en bild så startar den här funktionen 
         {
            //------------------- kontrolerar vilken bild man trycker på  --------------------------------
-            
-            if (this.getElementsByTagName("img")[0].getAttribute("src") === "memory/pics/0.png") // Kontrollera att lenk man klickar på representerar bild numer 0 i mappen pices 
+           
+            if (a.getElementsByTagName("img")[0].getAttribute("src") === "memory/pics/0.png") // vi Kontrollera att lenk man klickar på representerar bild numer 0 i mappen pices, getElementsByTagName returnerar en node list, [0] vi kotrolerar den frösrata img i nod listan  
             {
                 Memory.par.push(a);// Här trycker  man in "a "variabeln som representerar en bild i par arrayen  
                 
@@ -85,7 +85,7 @@ var Memory =
             
                 if (Memory.par.length < 3) // Så länge arrayen par inte har mer än två värden så vissas bilden man klickar på 
                 {
-                this.getElementsByTagName("img")[0].setAttribute("src", "memory/pics/" + Memory.smlumpbilder[bildplats] + ".png");// Här vissas bilen man klickar på  
+                a.getElementsByTagName("img")[0].setAttribute("src", "memory/pics/" + Memory.smlumpbilder[bildplats] + ".png");// Här vissas bilen man klickar på  
                 } 
                 
                 
@@ -97,7 +97,7 @@ var Memory =
                 }
              
                 
-            }
+            } 
         };
     },
     
@@ -136,7 +136,7 @@ var Memory =
              if (Memory.antalpar === 8) // har man hittat 4 par så är spelet slut 
                 {
           
-                document.getElementById("grattis").innerHTML = "Grattis!!! spelet är slut, Antal " + Memory.antalforsok + " försök!";// lägger in texten i div när spelt är slut 
+                document.getElementById("grattis").innerHTML = "Grattis!!! spelet är slut, \nAntal " + Memory.antalforsok + " försök!";// lägger in texten i div när spelt är slut 
         
                  }
                 
