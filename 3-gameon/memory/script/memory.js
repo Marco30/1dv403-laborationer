@@ -88,15 +88,8 @@ var Memory =
                 a.getElementsByTagName("img")[0].setAttribute("src", "memory/pics/" + Memory.smlumpbilder[bildplats] + ".png");// Här vissas bilen man klickar på  
                 } 
                 
-                
-                 //------------------- kontrolerar om bilderna är lika   --------------------------------
-        
-                if (Memory.par.length === 2)// har par arrayn två värden så kontroläar vi om bilderna är lika här 
-                {
-                    setTimeout(function() { Memory.Kontroll(Memory.par); }, 1000);
-                }
+
              
-                
             } 
         };
     },
