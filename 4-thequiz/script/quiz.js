@@ -12,7 +12,9 @@ var quiz = {
     
     antal : 0,// Kommer hålla antal försök    
      
-    forsoktabel: [],// I den här arrayen kommer vi samla alla försök man gjort     
+    forsoktabel: [],// I den här arrayen kommer vi samla alla försök man gjort 
+    
+    slut : 0, // använd för att texten efter avslutat sepl inte ska visa antal fel och antall försök
     
     start : function()
     {
@@ -91,6 +93,8 @@ var quiz = {
                         {
                             document.getElementById("fel").innerHTML = ""// Noll ställer fel texte rutan där texten fel visas när man gjort ett fel  
                             
+                            document.getElementById("antal").innerHTML = ""// Noll ställer texte rutan där texten antal försök visas 
+                            
                             quiz.forsoktabel.push(quiz.antal);//Sparar anfall försöka man gjort i arrayen forsoktabe          
                             
                             quiz.antal = 0;// Noll ställer antal försök innan man läser in nästa fråga      
@@ -102,18 +106,39 @@ var quiz = {
                         {
                             quiz.forsoktabel.push(quiz.antal);//Sparar anfall försöka man gjort i arrayen forsoktabe     
                             
-                            quiz.antal = 0; // Noll ställer antal försök innan man läser in nästa fråga    
+                            quiz.antal = 0; // Noll ställer antal försök innan man läser in nästa fråga 
                             
-                            quiz.resultat();// 
+                            document.getElementById("textonpage").innerHTML = "Quizen är slut";// lägger in Error text i webbsidan
+                           
+                            document.getElementById("fel").innerHTML = ""// Noll ställer fel texte rutan där texten fel visas när man gjort ett fel  
+                            
+                            document.getElementById("antal").innerHTML = ""// Noll ställer texte rutan där texten antal försök visas 
+                            
+                            quiz.slut = 1;// fixar bugar med att man kunte trycka på svara knapen och text matades in
+                            
+                            quiz.resultat();
+                            
                         }
                     
                 }
                     
                 else// Var det fel svar så körs den här else satsen som visar att du svarat fel  
                 {
-                        document.getElementById("fel").innerHTML = "Fel";// lägger in Error text i webbsidan 
+                    
+                    if(quiz.slut === 0)
+                    {
+                        document.getElementById("fel").innerHTML = "Du har svar fel på frågan!!!";// lägger in Error text i webbsidan 
                         
                         quiz.antal += 1;// räknar antal fel   
+                        
+                    document.getElementById("antal").innerHTML = " Antal försök: " + quiz.antal;// visar antal försök du gjort på frågan 
+                    }
+                    else// fixar fel Som gjorde att man kunde forsetta se att det var fel svar och antal försök man gjort fast spelet var slut. 
+                    {
+                        document.getElementById("fel").innerHTML = ""// Noll ställer fel texte rutan där texten fel visas när man gjort ett fel  
+                            
+                        document.getElementById("antal").innerHTML = ""// Noll ställer texte rutan där texten antal försök visas 
+                    }
                 }
             }
         };
@@ -133,8 +158,10 @@ var quiz = {
     
     resultat : function()// Här presenteras försöks tabell  
     {
-        
-        document.getElementById("result").innerHTML = "Antal gissningar:";// Lägger in text i webbsidan  
+        if(quiz.slut === 1)// Som gjorde att man kunde forsetta matta in text efter att spelet är slut och resultat rutan visade texten fast en det inte fan en fråga 
+        {
+            
+        document.getElementById("result").innerHTML = "Antal försök: ";// Lägger in text i webbsidan  
         
         var m = 1;// visar numer på frågan
         
@@ -149,6 +176,10 @@ var quiz = {
         m+=1;
             
         }
+        
+        }
+        
+        quiz.slut = 2;// fixar fell Som gjorde att man kunde forsetta matta in text efter att spelet är slut och resultat rutan visade texten fast en det inte fan en fråga 
         
     }
    
