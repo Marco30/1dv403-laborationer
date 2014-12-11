@@ -10,9 +10,9 @@ var quiz = {
     
     webbfroga : "http://vhost3.lnu.se:20080/question/1",
     
-     tries : 0,
+     antal : 0,
      
-    arr : [],
+    forsoktabel: [],
     
     start : function()
     {
@@ -23,9 +23,9 @@ var quiz = {
             
             var value = document.getElementById("svar").value;
             
-             document.getElementById("textonpage").innerHTML = "hej på dig"; 
+             //document.getElementById("textonpage").innerHTML = "hej på dig"; 
             
-            document.getElementById("textonpage").innerHTML = quiz.froga.nextURL +" " + value; 
+            //document.getElementById("textonpage").innerHTML = quiz.froga.nextURL +" " + value; 
             
             quiz.laddarupp(value, quiz.froga.nextURL);
              
@@ -76,24 +76,37 @@ quiz.laddarner(quiz.webbfroga);
             {
                 var message = JSON.parse(quiz.xhr2.responseText);
                 
-               document.getElementById("svar").value = "";
+               //document.getElementById("svar").value = "";
+              
                
-                 if(message.message === "Correct answer!"){
+                 if(message.message === "Correct answer!")
+                 {
                     
-                        if (message.nextURL !== undefined)
+                        if (message.nextURL !== undefined)// om message.nextURL int är undefinde så går vi in i den här if stasen 
                         {
                             document.getElementById("fel").innerHTML = "";
-                            quiz.arr.push(quiz.tries);
-                            quiz.tries = 0;
+                            
+                            quiz.forsoktabel.push(quiz.antal);
+                            
+                            quiz.antal = 0;
+                            
                             quiz.laddarner(message.nextURL);
                         }
-                    
+                        
+                        else
+                        {
+                            quiz.forsoktabel.push(quiz.antal);
+                            quiz.antal = 0;
+                            quiz.resultat();
+                        }
                     
                     }
-                else{
-                        document.getElementById("fel").innerHTML = "Fel Svar!";
-                        quiz.tries += 1;
-                    }
+                    
+                else
+                {
+                        document.getElementById("fel").innerHTML = "Fel";
+                        quiz.antal += 1;
+                }
             }
         };
 
@@ -106,6 +119,22 @@ quiz.laddarner(quiz.webbfroga);
     quiz.xhr2.send(answer);
         
     
+    },
+    
+    resultat : function()
+    {
+        
+        document.getElementById("result").innerHTML = "Antal gissningar:";
+        
+        for (var i = 1; i < quiz.forsoktabel.length + 1; i+=1) 
+        {
+            var p = document.createElement("p");
+            
+            document.getElementById("result").appendChild(p);
+            
+            p.innerHTML = "Fråga "+ i +": " + quiz.forsoktabel[i - 1];
+        }
+        
     }
    
 };

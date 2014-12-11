@@ -144,6 +144,23 @@ font-family: "Verdana","Arial",sans-serif;
 font-size: 15px;
 
 }
+
+.result
+{
+   margin: -46px 8px 55px 287px;
+font-family: "Verdana","Arial",sans-serif;
+font-size: 15px;
+
+}
+
+.fel
+{
+   margin: -46px 8px 55px 287px;
+font-family: "Verdana","Arial",sans-serif;
+font-size: 15px;
+
+}
+
 #textruta
 {
    height: auto !important;
