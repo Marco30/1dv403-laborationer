@@ -161,21 +161,21 @@ var quiz = {
         if(quiz.slut === 1)// Som gjorde att man kunde forsetta matta in text efter att spelet är slut och resultat rutan visade texten fast en det inte fan en fråga 
         {
             
-        document.getElementById("result").innerHTML = "Antal försök: ";// Lägger in text i webbsidan  
-        
-        var m = 1;// visar numer på frågan
-        
-        for (var i = 0; i < quiz.forsoktabel.length; i+=1) // Löper igenom arrayen som har sammalt alla försök    
-        {
-            var p = document.createElement("p");//Variabeln p får HTML koden <p>
+            document.getElementById("result").innerHTML = "Antal försök: ";// Lägger in text i webbsidan  
             
-            p.innerHTML = "Fråga "+ m +": " + quiz.forsoktabel[i];// lägger in information som finns i arrayen i <p> tagarna så att de syns på sidan     
+            var m = 1;// visar numer på frågan
             
-             document.getElementById("result").appendChild(p);// Lägger in den nya HTML koden <p> i <div id = "result"> så att det syns på webbsidan
-        
-        m+=1;
+            for (var i = 0; i < quiz.forsoktabel.length; i+=1) // Löper igenom arrayen som har sammalt alla försök    
+            {
+                var p = document.createElement("p");//Variabeln p får HTML koden <p>
+                
+                p.innerHTML = "Fråga "+ m +": " + quiz.forsoktabel[i];// lägger in information som finns i arrayen i <p> tagarna så att de syns på sidan     
+                
+                 document.getElementById("result").appendChild(p);// Lägger in den nya HTML koden <p> i <div id = "result"> så att det syns på webbsidan
             
-        }
+            m+=1;
+                
+            }
         
         }
         
