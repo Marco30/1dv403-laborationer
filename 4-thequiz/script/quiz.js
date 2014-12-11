@@ -2,20 +2,22 @@
 
 var quiz = {
     
-    froga : null,
+    froga : null, // Variabel som kommer hålla objekten man från server 
 
-    xhr1 : new XMLHttpRequest(),
+    xhr1 : new XMLHttpRequest(),// vi skppar ett XMLHttpRequest objekt som får namnet  xhr1 
     
-    xhr2 : new XMLHttpRequest(),
+    xhr2 : new XMLHttpRequest(),// vi skppar ett XMLHttpRequest objekt som får namnet  xhr2 
     
-    webbfroga : "http://vhost3.lnu.se:20080/question/1",
+    webbfroga : "http://vhost3.lnu.se:20080/question/1",// Variabel som får start webbplatsen där informationen som vi kommer använda finns   
     
-     antal : 0,
+    antal : 0,// Kommer hålla antal försök    
      
-    forsoktabel: [],
+    forsoktabel: [],// I den här arrayen kommer vi samla alla försök man gjort     
     
     start : function()
     {
+    
+        //---------------------Event hanterare som hanterar knapp tryckning--------------------------------
     
     document.getElementById("button").onclick = function(e)
     {
@@ -32,27 +34,27 @@ var quiz = {
     };
      
         
-quiz.laddarner(quiz.webbfroga);
+    quiz.laddarner(quiz.webbfroga);
 
     },
     
-    //---------------------laddar ner frågor--------------------------------
+        //---------------------laddar ner frågor--------------------------------
     
     laddarner : function(http)
     {
-       quiz.xhr1.onreadystatechange = function()   
+       quiz.xhr1.onreadystatechange = function()// Funkar som onclick, men aktiveras när servern skickar till baks information            
         {
             
-            if (quiz.xhr1.readyState === 4)
+            if (quiz.xhr1.readyState === 4)// 4 betyder att att information är färdig sickat, den kan nu användas av oss, när datan finns på websidan så startar den här if satsen      
             {
                   
-             if(quiz.xhr1.status === 200)
+                if(quiz.xhr1.status === 200)// // den här if satsen är en säkerhet kontroll, 200 betyder att att överföringen från server till webbsidan gick bra 
                 {
                      
                     
-                quiz.froga =  JSON.parse(quiz.xhr1.responseText);
+                quiz.froga =  JSON.parse(quiz.xhr1.responseText);// Omvandlar objekt vi får från servern till en arraye variabel med array funktioner. 
                 
-                document.getElementById("textonpage").innerHTML = quiz.froga.question; 
+                document.getElementById("textonpage").innerHTML = quiz.froga.question; // Läger in texten/information vi fåt från server i webbsidan 
                
                 }
              
@@ -60,79 +62,92 @@ quiz.laddarner(quiz.webbfroga);
                 
         };
           
-            quiz.xhr1.open("GET",http,true);
+            quiz.xhr1.open("GET",http,true);// Här sätter vi inställningar, gör att laddaner eller laddaupp, GET betyder att vi lddarner, http server platsen där informationen vi behöver finns, true betyder asynkront vilket betyder att man kör den utan att störa resten av scriptet    
         
-            quiz.xhr1.send(null);     
+            quiz.xhr1.send(null);//Den här används för att laddar upp information i servern     
     },
     
-    //---------------------laddar upp svar--------------------------------
+
     
     laddarupp : function(svar, http)
     {
         
-        quiz.xhr2.onreadystatechange = function(){  
+        //---------------------laddar upp svar--------------------------------
             
-            if(quiz.xhr2.readyState === 4)
+        quiz.xhr2.onreadystatechange = function()// Funkar som onclick, men aktiveras när servern skickar till baks information   
+        {  
+            
+            if(quiz.xhr2.readyState === 4)// 4 betyder att att information är färdig sickat, den kan nu användas av oss, när datan finns på websidan så startar den här if satsen
             {
-                var message = JSON.parse(quiz.xhr2.responseText);
+                var frogor2 = JSON.parse(quiz.xhr2.responseText);// Omvandlar objekt vi får från servern till en arraye variabel med array funktioner.
                 
-               //document.getElementById("svar").value = "";
+               document.getElementById("svar").value = "";// Noll ställer text rutan där man mattar in svar    
               
                
-                 if(message.message === "Correct answer!")
+                 if(frogor2.message === "Correct answer!")// kontrollerar att man get rätt svar gänom att gemföra meddelandet från servern            
                  {
                     
-                        if (message.nextURL !== undefined)// om message.nextURL int är undefinde så går vi in i den här if stasen 
+                        if (frogor2.nextURL !== undefined)// om frogor2.nextURL int är undefinde så går vi in i den här if stasen 
                         {
-                            document.getElementById("fel").innerHTML = "";
+                            document.getElementById("fel").innerHTML = ""// Noll ställer fel texte rutan där texten fel visas när man gjort ett fel  
                             
-                            quiz.forsoktabel.push(quiz.antal);
+                            quiz.forsoktabel.push(quiz.antal);//Sparar anfall försöka man gjort i arrayen forsoktabe          
                             
-                            quiz.antal = 0;
+                            quiz.antal = 0;// Noll ställer antal försök innan man läser in nästa fråga      
                             
-                            quiz.laddarner(message.nextURL);
+                            quiz.laddarner(frogor2.nextURL);//Läser in nästa fråga genom att ge den nya server plasten där frågan finns 
                         }
                         
-                        else
+                        else//Har du fåt rät svar och det var den sita frågan så startar vi den här else satsen, den startas när frogor2.nextURL är undefine, Vilket också betyder att det är slut på frågor   
                         {
-                            quiz.forsoktabel.push(quiz.antal);
-                            quiz.antal = 0;
-                            quiz.resultat();
+                            quiz.forsoktabel.push(quiz.antal);//Sparar anfall försöka man gjort i arrayen forsoktabe     
+                            
+                            quiz.antal = 0; // Noll ställer antal försök innan man läser in nästa fråga    
+                            
+                            quiz.resultat();// 
                         }
                     
-                    }
+                }
                     
-                else
+                else// Var det fel svar så körs den här else satsen som visar att du svarat fel  
                 {
-                        document.getElementById("fel").innerHTML = "Fel";
-                        quiz.antal += 1;
+                        document.getElementById("fel").innerHTML = "Fel";// lägger in Error text i webbsidan 
+                        
+                        quiz.antal += 1;// räknar antal fel   
                 }
             }
         };
 
-    var answer = JSON.stringify({answer: svar});
+    var serversvar = JSON.stringify({answer: svar});// Här läggs svaret in och omvandlas till ett objekt som kan tass i mot av servern    
     
-   quiz.xhr2.open("POST", http, true);
+   quiz.xhr2.open("POST", http, true);// // Här sätter vi inställningar, gör att laddaner eller laddaupp, POST betyder att vi laddar upp, http server platsen där informationen vi ska ladda upp, true betyder asynkront vilket betyder att man kör den utan att störa resten av scriptet
    
-    quiz.xhr2.setRequestHeader("Content-Type", "application/json");
+    quiz.xhr2.setRequestHeader("Content-Type", "application/json");// Informerar server att vi använder jason
     
-    quiz.xhr2.send(answer);
+    quiz.xhr2.send(serversvar);// Skickar upp datan till servern  
         
     
     },
     
-    resultat : function()
+    //----------------------Resultat på antal försök  -------------------------------
+    
+    resultat : function()// Här presenteras försöks tabell  
     {
         
-        document.getElementById("result").innerHTML = "Antal gissningar:";
+        document.getElementById("result").innerHTML = "Antal gissningar:";// Lägger in text i webbsidan  
         
-        for (var i = 1; i < quiz.forsoktabel.length + 1; i+=1) 
+        var m = 1;// visar numer på frågan
+        
+        for (var i = 0; i < quiz.forsoktabel.length; i+=1) // Löper igenom arrayen som har sammalt alla försök    
         {
-            var p = document.createElement("p");
+            var p = document.createElement("p");//Variabeln p får HTML koden <p>
             
-            document.getElementById("result").appendChild(p);
+            p.innerHTML = "Fråga "+ m +": " + quiz.forsoktabel[i];// lägger in information som finns i arrayen i <p> tagarna så att de syns på sidan     
             
-            p.innerHTML = "Fråga "+ i +": " + quiz.forsoktabel[i - 1];
+             document.getElementById("result").appendChild(p);// Lägger in den nya HTML koden <p> i <div id = "result"> så att det syns på webbsidan
+        
+        m+=1;
+            
         }
         
     }
@@ -140,4 +155,4 @@ quiz.laddarner(quiz.webbfroga);
 };
 
 
-window.onload = quiz.start;
+window.onload = quiz.start;// startar funktionen som har label start när sidan har ladats
