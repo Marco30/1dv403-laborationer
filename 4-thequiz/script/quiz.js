@@ -74,7 +74,7 @@ var quiz = {
     laddarupp : function(svar, http)
     {
         
-        //---------------------laddar upp svar--------------------------------
+        //---------------------laddar upp svar, del 1 av 2--------------------------------
             
         quiz.xhr2.onreadystatechange = function()// Funkar som onclick, men aktiveras när servern skickar till baks information   
         {  
@@ -85,6 +85,7 @@ var quiz = {
                 
                document.getElementById("svar").value = "";// Noll ställer text rutan där man mattar in svar    
               
+               //---------------------kontrollerar om man fåt rätt svar och laddar ner nästa fråga från server--------------------------------
                
                  if(frogor2.message === "Correct answer!")// kontrollerar att man get rätt svar gänom att gemföra meddelandet från servern            
                  {
@@ -127,7 +128,7 @@ var quiz = {
                     
                     if(quiz.slut === 0)
                     {
-                        document.getElementById("fel").innerHTML = "Du har svar fel på frågan!!!";// lägger in Error text i webbsidan 
+                        document.getElementById("fel").innerHTML = "Du har svarat fel på frågan!!!";// lägger in Error text i webbsidan 
                         
                         quiz.antal += 1;// räknar antal fel   
                         
@@ -142,6 +143,8 @@ var quiz = {
                 }
             }
         };
+        
+        //---------------------laddar upp svar, del 2 av 2--------------------------------
 
     var serversvar = JSON.stringify({answer: svar});// Här läggs svaret in och omvandlas till ett objekt som kan tass i mot av servern    
     
@@ -161,7 +164,7 @@ var quiz = {
         if(quiz.slut === 1)// Som gjorde att man kunde forsetta matta in text efter att spelet är slut och resultat rutan visade texten fast en det inte fan en fråga 
         {
             
-            document.getElementById("result").innerHTML = "Antal försök: ";// Lägger in text i webbsidan  
+            document.getElementById("result").innerHTML = "Antal fel: ";// Lägger in text i webbsidan  
             
             var m = 1;// visar numer på frågan
             
