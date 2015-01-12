@@ -91,20 +91,21 @@ body
 
 #image {
    padding: 13px;
-margin-top: -2px;
-margin-left: 3px;
-
+margin-top: -6px;
+margin-left: -3px;
+width: 35px;
+height: auto;
 }
 
 
 
-#cancelButton {
+#avslutaikon {
    float: right;
    margin-top: 12px;
    margin-right: 5px;
 }
 
-#cancelButton:hover {
+#avslutaikon:hover {
     cursor:pointer;
 }
 
