@@ -130,7 +130,71 @@ alert("ok");
                     
                     alert(xhr.responseText);
                     
+                    var temp; // varibelm kommer höd och bred 
+                    
+                    var height = 0;
+                    
+                    var width = 0;
+                  
+                    //Letar upp bilden med den bredaste och högsta tumlängd.
+                    for (var n = 0; n < info.length; n++) 
+                    {
+                        temp = info[n];
+                        if (temp.thumbHeight > height) 
+                        {
+                            height = temp.thumbHeight;
+                        }
+                        if (temp.thumbWidth > width) 
+                        {
+                            width = temp.thumbWidth;
+                        }
+                    }
+                    
+                    //Hämtar ut varje photo individuellt.
+                    for (var i = 0; i < info.length; i++) 
+                    {
+                        var bild = document.createElement("img");
+                        
+                        var temp2 = document.createElement("div");
+                        
+                        temp2.setAttribute("class", "boxes");
+                        
+                       bild.setAttribute("src", info[i].thumbURL);
+                        
+                        bild.setAttribute("id", "photo" + count);
+                        
+                        galler.appendChild(temp2);
+                        
+                        temp2.appendChild(bild);
+                        
+                        count++;
+                        
+                        //Ändrar bakgrundsbilden.
+                       bild.onclick = function(e) 
+                        {
+                            var image = e.target.id.replace("photo", ""); 
+                            
+                            var Bakgrundsbild  = info[image].URL;
+                            
+                            var body = document.getElementById("body");
+                            
+                            body.style.backgroundImage = "url(" + Bakgrundsbild  + ")";
+                            
+                        };      
+                        
+                    temp2.style.width = width + "px";
+                    
+                    temp2.style.height = height + "px";
+                    
+                    }
                 }
+                else {
+                    console.log("Läsfel, status"+xhr.status);
+                }
+                
+                clearTimeout(Desktop.time); // rensar ladare 
+                
+                Desktop.footer.removeChild(Desktop.loadIcon);
             }
         };
         
