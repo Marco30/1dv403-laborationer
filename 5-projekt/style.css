@@ -1,0 +1,174 @@
+ /* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+/*Här börjar min CSS */
+
+
+
+/*#content {
+    width:1280px;
+    height:740px;
+    margin:auto;
+background-image:url('images/wood.jpg');
+    position: absolute;
+}*/
+
+
+#menu {
+    width:100%;
+    border-top: 5px solid black;    
+    position:absolute; bottom:0;
+    background-color: rgba(34, 24, 28, 0.5);
+    background: rgba(34, 24, 28, 0.5);
+    color: rgba(34, 24, 28, 0.5);
+}
+
+#Menyikon  {
+    float:left;
+    margin:8px;
+}
+
+#Menyikon:hover {
+    cursor: pointer;
+}
+
+#clock {
+    font-family:Verdana;
+    color:white;
+    border:solid white 1px;
+    float:right;
+    margin-top:25px;
+    margin-right:10px;
+}
+
+#image {
+   padding: 13px;
+margin-top: -2px;
+margin-left: 3px;
+
+}
+
+
+
+#cancelButton {
+   float: right;
+   margin-top: 12px;
+   margin-right: 5px;
+}
+
+#cancelButton:hover {
+    cursor:pointer;
+}
+
+.headerText {
+    color: white;
+    font-family:Helvetica;
+    margin-left:30px;
+    margin-top:-24px;
+}
+
+#popup{
+	width: 371px;
+height: 494px;
+position: absolute;
+top: 206px;
+left: 527px;
+border: 2px solid green;
+background-color: black;
+
+}
+
+#top{
+	width:100%;
+	height:60px;
+	border-bottom: 1px solid white;
+	background-color:black;
+}
+
+#topright{
+	width:250px;
+	height:40px;
+	float:right;
+	padding-right:5px;
+	background-color:black;
+}
+
+#topleft{
+	width:100px;
+	height:30px;
+	float:left;
+	margin:5px 0 0 5px;
+	background-color:black;
+}
+
+#footer {
+   width:100%;
+	height:38px;
+	border-top: 1px solid white;
+	background-color:black;
+}
+
+#load
+{
+margin: 9px 594px 31px 122px;
+}
+
+#mid{
+width: 100%;
+height: 395px;
+background-color: black;
+overflow: auto;
+}
+
+.boxes {
+    background-color: #D2CBC5;
+    margin:10px;
+    float:left;
+    padding:4px;
+    text-align:center;
+}
+
+
