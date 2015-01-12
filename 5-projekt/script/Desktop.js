@@ -10,8 +10,8 @@ var Desktop = {
     
     time : null,
     
-    //Variablerna för popup fönstret.
-    popupWindow: function() 
+     //Variablerna för popup fönstret.
+    popupwindow: function(galler) 
     { 
         Desktop.counter++;
         
@@ -48,44 +48,97 @@ var Desktop = {
 		top.appendChild(topleft);
 		top.appendChild(topright);// dellar upp topramen i höger och vänster
 		
-        var imageIcon = document.createElement("img");
+        var Bildgallerikon = document.createElement("img");
         
-        imageIcon.setAttribute("src", "images/tinyCamera.png");
+        Bildgallerikon.setAttribute("src", "images/tinyCamera.png");
         
-        imageIcon.setAttribute("id", "image");
+        Bildgallerikon.setAttribute("id", "image");
         
-        topleft.appendChild(imageIcon);
+        topleft.appendChild(Bildgallerikon);
         
-        var cancelButton = document.createElement("img");
+        var avslutaikon = document.createElement("img");
         
-         cancelButton.setAttribute("src", "images/delete.png");
+         avslutaikon.setAttribute("src", "images/delete.png");
          
-         cancelButton.setAttribute("id", "cancelButton")
+         avslutaikon.setAttribute("id", "cancelButton")
          
-         topright.appendChild(cancelButton);
+         topright.appendChild(avslutaikon);
         
-        var ajaxImg = document.createElement("div");
+        var ajaxbild = document.createElement("div");
     
         alert("I am an alert box2323!");
+        
+        Desktop.time = setTimeout(function() 
+        {
+            
+        Desktop.loadIcon = document.createElement("img");
+        
+         Desktop.loadIcon.setAttribute("src", "images/ajax.gif");
+         
+          Desktop.loadIcon.setAttribute("id", "load")
+          
+        Desktop.footer.appendChild(Desktop.loadIcon);
+        
+        },300);  
+        
    
+        
         
         //"Knuffar" in taggarna i popup rutan.
         //cancelButton.setAttribute("click");
         
-        ajaxImg.appendChild(galler);
+        ajaxbild.appendChild(galler);
         
-        mid.appendChild(ajaxImg);
+        mid.appendChild(ajaxbild);
 
 alert("ok");
         //body.insertBefore(body.firstChild);
         
         document.getElementById("body").appendChild(popup);
         
+        //Funktion som stänger ner popup fönstret.
+        avslutaikon.onclick = function() 
+        { 
+            popup.parentNode.removeChild(popup);
+            
+            Desktop.counter = 0;
+        };
         
         alert("slut3!");
-    }
+    },
     
+    
+     //Ajax metoden som hämtar ut länken med bilderna och knuffar in de i popup fönstret. 
+    laddarner : function() 
+    {
+        var galler = document.createElement("div");
+        
+        Desktop.popupwindow(galler);
+        
+        var xhr = new XMLHttpRequest(); 
+        
+        var count = 0;
+        
+        
+        xhr.onreadystatechange = function() 
+        {
+            if(xhr.readyState === 4) 
+            {
+                if(xhr.status === 200) 
+                {
+                    var info = JSON.parse(xhr.responseText);
+                    
+                    alert(xhr.responseText);
+                    
+                }
+            }
+        };
+        
+        xhr.open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);    
+        
+        xhr.send(null);
+    }
     
 };
 
-window.onload = Desktop.popupWindow;
+window.onload = Desktop.laddarner;
