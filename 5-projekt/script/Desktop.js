@@ -82,9 +82,7 @@ var Desktop = {
         
     
         // alert("I am an alert box2323!");// test
-        
-        Desktop.time = setTimeout(function()// vissar loadikonen meddan man väntar på att få information från servern 
-        {
+    
             
         Desktop.loadIcon = document.createElement("img");// variabeln loadIcon får HTML koden <img>
         
@@ -94,7 +92,7 @@ var Desktop = {
           
         Desktop.footer.appendChild(Desktop.loadIcon);// variabeln footert får HTML koden <img>
         
-        },300);  
+     //--------Skapar <div> som kommer ha bilderna som laddas hem---------------------
    
         var ajaxbild = document.createElement("div");// Variabeln ajaxbild får HTML koden <div>
         
@@ -131,7 +129,6 @@ var Desktop = {
                     {
                         return;
                     }
-                    
                     else
                     {
                     Desktop.laddarner();// starta laddarnerfunktionen
@@ -231,7 +228,7 @@ var Desktop = {
                     console.log("Fel!!!, status"+xhr.status);// om servern är ner får det fell som hanteras här  
                 }
                 
-                clearTimeout(Desktop.time); // rensar tids lopen timeout 
+
                 
                 Desktop.footer.removeChild(Desktop.loadIcon);// raderar loadkionen 
             }
