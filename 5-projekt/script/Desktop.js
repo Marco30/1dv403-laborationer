@@ -235,7 +235,7 @@ var Desktop = {
         };
         
         xhr.open("get", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);//// Här sätter vi inställningar, gör att laddaner eller laddaupp, GET betyder att vi lddarner, http server platsen där informationen vi behöver finns, true betyder asynkront vilket betyder att man kör den utan att störa resten av scriptet    
-        
+
         xhr.send(null);//Den här används för att laddar upp information i servern     
     }
     
